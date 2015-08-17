@@ -1,0 +1,13 @@
+/vendor
+composer.lock
+composer.phar
+phpunit.xml
+.idea/
+.idea
+.git
+
+.directory
+dirlist.app
+dirlist.vendor
+dirlist.cache
+documents/
