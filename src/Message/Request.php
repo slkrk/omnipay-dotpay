@@ -9,14 +9,14 @@ use Omnipay\Common\Message\AbstractRequest;
  */
 class Request extends AbstractRequest
 {
-    public function getAccountId()
+    public function getId()
     {
-        return $this->getParameter('accountId');
+        return $this->getParameter('id');
     }
 
-    public function setAccountId($value)
+    public function setId($value)
     {
-        return $this->setParameter('accountId', $value);
+        return $this->setParameter('id', $value);
     }
 
     public function getPid()
@@ -61,12 +61,12 @@ class Request extends AbstractRequest
 
     public function getApiVersion()
     {
-        return $this->getParameter('apiVersion');
+        return $this->getParameter('api_version');
     }
 
     public function setApiVersion($value)
     {
-        return $this->setParameter('apiVersion', $value);
+        return $this->setParameter('api_version', $value);
     }
 
     public function getChannel()
@@ -91,12 +91,12 @@ class Request extends AbstractRequest
 
     public function getButtonText()
     {
-        return $this->getParameter('button_text');
+        return $this->getParameter('buttontext');
     }
 
     public function setButtonText($value)
     {
-        return $this->setParameter('button_text', $value);
+        return $this->setParameter('buttontext', $value);
     }
 
     public function getControl()
@@ -111,22 +111,22 @@ class Request extends AbstractRequest
 
     public function getFirstName()
     {
-        return $this->getParameter('first_name');
+        return $this->getParameter('firstname');
     }
 
     public function setFirstName($value)
     {
-        return $this->setParameter('first_name', $value);
+        return $this->setParameter('firstname', $value);
     }
 
     public function getLastName()
     {
-        return $this->getParameter('last_name');
+        return $this->getParameter('lastname');
     }
 
     public function setLastName($value)
     {
-        return $this->setParameter('last_name', $value);
+        return $this->setParameter('lastname', $value);
     }
 
     public function getEmail()
@@ -229,16 +229,6 @@ class Request extends AbstractRequest
         return $this->setParameter('country', $value);
     }
 
-    public function getPInfo()
-    {
-        return $this->getParameter('p_info');
-    }
-
-    public function setPInfo($value)
-    {
-        return $this->setParameter('p_info', $value);
-    }
-
     public function getPEmail()
     {
         return $this->getParameter('p_email');
@@ -249,6 +239,86 @@ class Request extends AbstractRequest
         return $this->setParameter('p_email', $value);
     }
 
+    public function getPInfo()
+    {
+    	return $this->getParameter('p_info');
+    }
+    
+    public function setPInfo($value)
+    {
+    	return $this->setParameter('p_info', $value);
+    }
+
+    public function getURL()
+    {
+    	return $this->getParameter('URL');
+    }
+    
+    public function setURL($value)
+    {
+    	return $this->setParameter('URL', $value);
+    }
+    
+    public function getURLC()
+    {
+    	return $this->getParameter('URLC');
+    }
+    
+    public function setURLC($value)
+    {
+    	return $this->setParameter('URLC', $value);
+    }
+    
+    public function getCharset()
+    {
+    	return $this->getParameter('charset');
+    }
+    
+    public function setCharset($value)
+    {
+    	return $this->setParameter('charset', $value);
+    }
+    
+    public function getChk()
+    {
+    	return $this->getParameter('chk');
+    }
+    
+    public function setChk($value)
+    {
+    	return $this->setParameter('chk', $value);
+    }
+    
+    public function getCreditCardId()
+    {
+    	return $this->getParameter('credit_card_id');
+    }
+    
+    public function setCreditCardId($value)
+    {
+    	return $this->setParameter('credit_card_id', $value);
+    }
+
+    public function getCreditCardCustomerId()
+    {
+    	return $this->getParameter('credit_card_customer_id');
+    }
+    
+    public function setCreditCardCustomerId($value)
+    {
+    	return $this->setParameter('credit_card_customer_id', $value);
+    }
+    
+    public function getCreditCardStore()
+    {
+    	return $this->getParameter('credit_card_store');
+    }
+    
+    public function setCreditCardStore($value)
+    {
+    	return $this->setParameter('credit_card_store', $value);
+    }
+        
     public function getStatus()
     {
         return $this->getParameter('status');
@@ -264,8 +334,8 @@ class Request extends AbstractRequest
         $this->validate('amount');
 
         $data = array(
-            'id' => (int) $this->getAccountId(),
-            'amount' => (float) $this->getAmount(),
+            'id' => (int) $this->getId(),
+            'amount' => $this->getAmount(),
             'currency' => $this->getCurrency(),
             'description' => $this->getDescription(),
             'lang' => $this->getLang(),
@@ -273,12 +343,13 @@ class Request extends AbstractRequest
         );
 
         $additional = array(
+        	'charset' => $this->getCharset(),
             'channel' => $this->getChannel(),
             'ch_lock' => $this->getChLock(),
-            'URL' => $this->getReturnUrl(),
+            'URL' => $this->getURL(),
             'type' => (string) $this->getType(),
             'buttontext' => $this->getButtonText(),
-            'URLC' => $this->getNotifyUrl(),
+            'URLC' => $this->getURLC(),
             'control' => $this->getControl(),
             'firstname' => $this->getFirstName(),
             'lastname' => $this->getLastName(),
@@ -292,8 +363,13 @@ class Request extends AbstractRequest
             'postcode' => $this->getPostcode(),
             'phone' => $this->getPhone(),
             'country' => $this->getCountry(),
-            'p_info' => (int) $this->getAccountId(),
-            'p_email' => $this->getPEmail()
+        	'p_info' => $this->getPInfo(),
+            'p_email' => $this->getPEmail(),
+        	
+        	'chk' => $this->getChk(),
+	        'credit_card_id' => $this->getCreditCardId(),
+	        'credit_card_customer_id' => $this->getCreditCardCustomerId(),
+	        'credit_card_store' => $this->getCreditCardStore()
         );
 
         foreach ($additional as $key => $value) {
@@ -301,7 +377,7 @@ class Request extends AbstractRequest
                 $data[$key] = $value;
             }
         }
-
+        
         return $data;
     }
 
