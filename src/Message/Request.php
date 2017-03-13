@@ -343,7 +343,7 @@ class Request extends AbstractRequest
         );
 
         $additional = array(
-        	'charset' => $this->getCharset(),
+            'charset' => $this->getCharset(),
             'channel' => $this->getChannel(),
             'ch_lock' => $this->getChLock(),
             'URL' => $this->getURL(),
@@ -363,13 +363,13 @@ class Request extends AbstractRequest
             'postcode' => $this->getPostcode(),
             'phone' => $this->getPhone(),
             'country' => $this->getCountry(),
-        	'p_info' => $this->getPInfo(),
+	    'p_info' => $this->getPInfo(),
             'p_email' => $this->getPEmail(),
         	
-        	'chk' => $this->getChk(),
-	        'credit_card_id' => $this->getCreditCardId(),
-	        'credit_card_customer_id' => $this->getCreditCardCustomerId(),
-	        'credit_card_store' => $this->getCreditCardStore()
+            'chk' => $this->getChk(),
+	    'credit_card_id' => $this->getCreditCardId(),
+	    'credit_card_customer_id' => $this->getCreditCardCustomerId(),
+	    'credit_card_store' => $this->getCreditCardStore()
         );
 
         foreach ($additional as $key => $value) {
